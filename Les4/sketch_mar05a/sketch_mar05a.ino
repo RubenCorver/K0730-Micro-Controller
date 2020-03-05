@@ -6,14 +6,8 @@ int delayValue = 200;
 
 void setup() {
 
-  // initialize digital pin 12 as input;
-
   pinMode(2, INPUT);  
   pinMode(5, INPUT);
-
- 
-
-  // initialize digital pin 2 to 5 as output:
 
   pinMode(13, OUTPUT);   
 
@@ -46,8 +40,6 @@ int checkInput() {
 
 void loop(){
 
-  // Check if the button is press at the right moment
-
   if (digitalRead(5) == 0){
     delayValue = 200;
   }
@@ -56,8 +48,6 @@ void loop(){
 
      if (currentLED == 11) {
 
-       // Blink the correct (green) LED
-
        digitalWrite(11, HIGH);
 
        delay(200);
@@ -73,18 +63,12 @@ void loop(){
        digitalWrite(11, LOW);
 
        delay(200);
-
- 
-
-// Speed up the LEDs
 
        delayValue = delayValue - 20; 
 
  
 
     } else {
-
-       // Blink the wrong LED
 
        digitalWrite(currentLED, HIGH);
 
@@ -107,8 +91,6 @@ void loop(){
     }
 
   }
-
-  // Loop LED from white –> yellow –> green –> red
 
   digitalWrite(currentLED, HIGH);
 
