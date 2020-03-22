@@ -1,0 +1,13 @@
+int buttonOne = 9;
+int buttonTwo = 11;
+
+void setup() {
+ pinMode(9, INPUT);
+ pinMode(11, INPUT);
+ Serial.begin(9600);
+}
+
+void loop() {
+digitalWrite(buttonOne, HIGH);
+digitalWrite(buttonTwo, HIGH);
+}
