@@ -1,0 +1,42 @@
+#include <Servo.h>
+
+Servo servo;
+int speed = 45;
+const int buttonHigher = 4;
+const int buttonLower = 5;
+const int buttonReset = 6;
+
+
+int buttonHigherV = 0;
+int buttonResetV = 0;
+int buttonLowerV = 0;
+
+void setup()
+{
+	Serial.begin(9600);
+	servo.attach(3);
+}
+
+void loop()
+{
+	buttonHigherV = digitalRead(buttonHigher);
+	buttonLowerV = digitalRead(buttonLower);
+	buttonResetV = digitalRead(buttonReset);
+	
+	if(buttonHigherV == 0){
+		if(speed < 180){
+			speed = speed + 1;
+		}
+	}
+	if(buttonLowerV == 0){
+		if(speed > 0){
+			speed = speed - 1;
+		}
+	}
+	if(buttonResetV == 0){
+		speed = 90;
+	}
+	
+	servo.write(speed);
+	delay(100);
+}
