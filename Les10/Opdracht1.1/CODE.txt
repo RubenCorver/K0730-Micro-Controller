@@ -1,0 +1,33 @@
+const int buttonPin = 3;
+const int ledOnePin = 4;
+const int ledTwoPin = 5;
+const int ledThreePin = 6;
+const int ledFourPin = 7;
+
+int buttonPressed = 0;
+
+void setup(){
+	pinMode( ledOnePin, OUTPUT);
+	pinMode( ledTwoPin, OUTPUT);
+	pinMode( ledThreePin, OUTPUT);
+	pinMode( ledFourPin, OUTPUT);
+}
+
+void loop(){
+	buttonPressed = digitalRead(buttonPin);
+	
+	if(buttonPressed == 0){
+		digitalWrite(ledOnePin,HIGH);
+		delay(8000);
+		digitalWrite(ledTwoPin,HIGH);
+		delay(8000);
+		digitalWrite(ledThreePin,HIGH);
+		delay(8000);
+		digitalWrite(ledFourPin,HIGH);
+		delay(500);
+		digitalWrite(ledOnePin,LOW);
+		digitalWrite(ledTwoPin,LOW);
+		digitalWrite(ledThreePin,LOW);
+		digitalWrite(ledFourPin,LOW);
+	}
+}
