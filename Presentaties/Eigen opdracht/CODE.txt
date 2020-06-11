@@ -1,0 +1,69 @@
+#include <Servo.h>
+
+Servo servo;
+int led1 = 7;//Leds geven aan welke richting
+int led2 = 8;
+int led3 = 9;
+int led4 = 10;
+int buttonHigher = 4;//1ste button pin maakt de stand hoger
+int buttonLower = 5;//2de button pin maakt de stand lager
+int buttonReset = 6;//3de button pin reset de stand
+int stand = 90;
+
+//Button read value's
+int HigherRead = 0; 
+int LowerRead = 0; 
+int ResetRead = 0; 
+
+void setup()
+{
+	pinMode(led1, OUTPUT);
+	pinMode(led2, OUTPUT);
+	pinMode(led3, OUTPUT);
+	pinMode(led4, OUTPUT);
+	Serial.begin(9600);
+	servo.attach(3);
+}
+
+void loop()
+{
+	HigherRead = digitalRead(buttonHigher);//Worden de buttons gelezen of ze ingedrukt worden
+	LowerRead = digitalRead(buttonLower);
+	ResetRead = digitalRead(buttonReset);
+	digitalWrite(led1, LOW);
+	digitalWrite(led2, LOW);
+	digitalWrite(led3, LOW);
+	digitalWrite(led4, HIGH);//Rode led blijft aan als er niks gedrukt wordt
+	
+	//Als buttonHigher is ingedrukt
+	if(HigherRead == 0){
+		digitalWrite(led1, HIGH);//Groen led gaat aan
+		digitalWrite(led2, LOW);
+		digitalWrite(led3, LOW);
+		digitalWrite(led4, LOW);
+		if(stand < 180){
+			stand = stand + 1;
+		}
+	}
+	//Als buttonLower is ingedrukt
+	if(LowerRead == 0){
+		digitalWrite(led1, LOW);//Blauwe led gaat aan
+		digitalWrite(led2, HIGH);
+		digitalWrite(led3, LOW);
+		digitalWrite(led4, LOW);
+		if(stand > 0){
+			stand = stand - 1;
+		}
+	}
+	//Als de reset button is ingedrukt
+	if(ResetRead == 0){
+		digitalWrite(led1, LOW);//Gele led gaat aan
+		digitalWrite(led2, LOW);
+		digitalWrite(led3, HIGH);
+		digitalWrite(led4, LOW);
+		stand = 90;
+	}
+	
+	servo.write(stand);//Geeft de stand van de servo aan
+	delay(100);
+}
